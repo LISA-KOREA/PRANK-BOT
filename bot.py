@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 import random
+import asyncio
 
 # Add your API ID, API hash, and bot token obtained from the Telegram website
 api_id = "4888076"
@@ -19,6 +20,10 @@ prank_messages = [
     "Congratulations! You've won a free imaginary vacation to Mars! 🚀",
     "Warning: This message contains extreme levels of prankiness! Proceed with caution. 😄",
     "You've unlocked the secret prank level! Prepare for the unexpected! 🎈",
+    "You just missed the prank train! 🚂 Better luck next time! 😄",
+    "Unexpected error: Prank.exe has stopped working. Just kidding! 😂",
+    "Important announcement: You've been officially pranked! 📢",
+    "Prank level: Expert! You're now a certified prankster! 🏆",
 ]
 
 # Define a function to handle the /start command
@@ -34,7 +39,10 @@ async def handle_message(client, message):
     prank_message = random.choice(prank_messages)
     
     # Send the prank message to the user
-    await message.reply_text(prank_message)
+    if "BOOM" in prank_message:
+        await message.reply_animation(animation="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif")
+    else:
+        await message.reply_text(prank_message)
 
 # Run the client
 app.run()
